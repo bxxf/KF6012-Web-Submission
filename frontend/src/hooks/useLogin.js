@@ -35,7 +35,7 @@ export const useLogin = () => {
 
           setLoggedIn(true);
           setUser({ email: email });
-          toast.success("Logged out successfully", {
+          toast.success("Logged in successfully", {
             description:
               "You have been logged in. Now you can use note-taking features.",
             descriptionClassName: "!text-sm !text-green-600",
