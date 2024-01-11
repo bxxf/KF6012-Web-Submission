@@ -4,13 +4,13 @@ This document outlines the Assessment API's structure and functionality. The arc
 
 Repositories are used for data-related operations (working with the database), whereas managers are used to store logic for managing particular pieces of logic, such as the database management. The endpoints then invoke these repositories directly through creating new instances in constructor.
 
-I am using PHP CodeSniffer composer dependency in a linting step to ensure that the code follows PSR-12 coding standarts (the dependency is not used in the code itself, only for validation in editor).
+I am using PHP CodeSniffer composer dependency in a linting step to ensure that the code follows PSR-12 coding standarts (the dependency is not used in the code itself, only for linting in editor).
 
 Postman collection and environment for testing are included in the `postman` directory.
 
 ## URL to the API
 
-The API is hosted on the NUWebspace server at the following URL: [https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer)
+The API is hosted on the NUWebspace server at the following URL: [https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer)
 
 ## File Structure Overview
 
@@ -18,7 +18,6 @@ The API is hosted on the NUWebspace server at the following URL: [https://w21020
 |  .gitignore - Excludes files from Git version control
 |  composer.json - Defines dependencies and metadata for Composer
 |  composer.lock - Locks dependencies to specific versions for Composer
-|  README.md - This file
 
 |  .htaccess - Apache configuration file
 |  index.php -  Primary entry point for the application

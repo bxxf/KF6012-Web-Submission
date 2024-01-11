@@ -14,25 +14,24 @@ The structure of the app is as follows:
 
 ```
 | src
-| | assets - contains all the assets such as images, fonts, etc.
-| | components - contains all the components that are used in the app
-| | | common - contains all the common components that are used specifically for routes
-| | | shared - contains all the shared components that are used across the app
-| | config - contains the config file for the app
-| | hooks - contains all the hooks that are used across the app (logic that is shared across components)
-| | routes - contains all the pages that are used in the app
-| | stores - contains all the zustand stores that are used across the app
-| | utils - contains all the utility functions that are used across the app
-| | main.jsx - the entry point of the app
+| | assets - assets such as images, fonts, etc.
+| | components - components that are used in the app
+| | | common - components that are used specifically for each route
+| | | shared - components that are shared across the app
+| | config - config file for the app
+| | hooks - logic shared across components
+| | routes - pages
+| | stores - zustand stores - shared state
+| | utils - utility functions
+| | main.jsx - entry point of the app
 
-| index.html - the html template for the app
-| jsconfig.json - the config file for the app - allows for import aliases
-| package.json - the package file for the app
-| README.md - the readme file for the app
-| components.json - the components file for shadcn ui config
-| postcss.config.js - the postcss config file for the app
-| tailwind.config.js - the tailwind config file for the app
-| vite.config.js - the vite config file for the app
+| index.html - html template for the app
+| jsconfig.json - jsconfig file - allows for import aliases
+| package.json - package management file
+| components.json - shadcn ui config
+| postcss.config.js - postcss config
+| tailwind.config.js - tailwind config
+| vite.config.js - vite config
 | bun.lockb - the bun lock file - used for package management
 ```
 
@@ -52,7 +51,7 @@ The app is configured using the config file in the src/config folder. This file 
 
 ## Potential Issues
 
-Slow internet connection might cause issues with slower routing as the data are preloaded before the rendering. To mitigate these issues use local development server.
+Slow internet connection might cause issues with slower routing as the data are preloaded before the rendering. To mitigate these issues with slower internet connection, use local development server.
 
 ## Installation
 
