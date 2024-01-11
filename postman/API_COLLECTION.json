@@ -1,0 +1,520 @@
+{
+	"info": {
+		"_postman_id": "600c34a4-b831-4e7b-a6c8-3db5dacae263",
+		"name": "KF6012 PHP API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32171899"
+	},
+	"item": [
+		{
+			"name": "Developer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preview",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Preview with limit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Content",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Content With Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"developer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Content Types (for frontend)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/content-types",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"content-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authors With Affiliations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/author-and-affiliation?country=united states",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"author-and-affiliation"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "united states"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Directory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/directory?search=explain&limit=2",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"directory"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "explain"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get JWT Token (Basic Auth)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "examplePassword1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "john@example.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic sddssds",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/token",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var url = pm.environment.get(\"APIURL\") + \"/\" + pm.environment.get(\"PREFIX\") + \"/token\"",
+							"",
+							"var req = {",
+							"    url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"        'Authorization': 'Basic am9obkBleGFtcGxlLmNvbTpleGFtcGxlUGFzc3dvcmQxMjM0'}",
+							"}",
+							"pm.sendRequest(req, (error, response) => {",
+							"        var jsonResponse = response.json();",
+							"        var token = jsonResponse.token;",
+							"        pm.environment.set('JWT', token);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/user",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Notes (Current User)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var url = pm.environment.get(\"APIURL\") + \"/\" + pm.environment.get(\"PREFIX\") + \"/token\"",
+							"",
+							"var req = {",
+							"    url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"        'Authorization': 'Basic am9obkBleGFtcGxlLmNvbTpleGFtcGxlUGFzc3dvcmQxMjM0'}",
+							"}",
+							"pm.sendRequest(req, (error, response) => {",
+							"        var jsonResponse = response.json();",
+							"        var token = jsonResponse.token;",
+							"        pm.environment.set('JWT', token);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/note",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note (Current User)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var url = pm.environment.get(\"APIURL\") + \"/\" + pm.environment.get(\"PREFIX\") + \"/token\"",
+							"",
+							"var req = {",
+							"    url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"        'Authorization': 'Basic am9obkBleGFtcGxlLmNvbTpleGFtcGxlUGFzc3dvcmQxMjM0'}",
+							"}",
+							"pm.sendRequest(req, (error, response) => {",
+							"        var jsonResponse = response.json();",
+							"        var token = jsonResponse.token;",
+							"        pm.environment.set('JWT', token);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"content_id\": 95695,\n    \"text\": \"ahodsddssjk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/note",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note (Current User)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var url = pm.environment.get(\"APIURL\") + \"/\" + pm.environment.get(\"PREFIX\") + \"/token\"",
+							"",
+							"var req = {",
+							"    url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"        'Authorization': 'Basic am9obkBleGFtcGxlLmNvbTpleGFtcGxlUGFzc3dvcmQxMjM0'}",
+							"}",
+							"pm.sendRequest(req, (error, response) => {",
+							"        var jsonResponse = response.json();",
+							"        var token = jsonResponse.token;",
+							"        pm.environment.set('JWT', token);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"note_id\": 2,\n    \"text\": \"ahojkos\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/note",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note (Current User)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var url = pm.environment.get(\"APIURL\") + \"/\" + pm.environment.get(\"PREFIX\") + \"/token\"",
+							"",
+							"var req = {",
+							"    url,",
+							"    method: 'POST',",
+							"    header: {",
+							"        'Content-Type': 'application/json',",
+							"        'Authorization': 'Basic am9obkBleGFtcGxlLmNvbTpleGFtcGxlUGFzc3dvcmQxMjM0'}",
+							"}",
+							"pm.sendRequest(req, (error, response) => {",
+							"        var jsonResponse = response.json();",
+							"        var token = jsonResponse.token;",
+							"        pm.environment.set('JWT', token);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"note_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}/{{PREFIX}}/note",
+					"host": [
+						"{{APIURL}}"
+					],
+					"path": [
+						"{{PREFIX}}",
+						"note"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

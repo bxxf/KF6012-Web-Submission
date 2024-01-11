@@ -1,0 +1,27 @@
+{
+	"id": "086baf14-4c86-4742-a075-937dffdcde97",
+	"name": "KF6012 PHP API",
+	"values": [
+		{
+			"key": "PREFIX",
+			"value": "kf6012/coursework/api",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "APIURL",
+			"value": "https://w21020340.nuwebspace.co.uk",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "JWT",
+			"value": "Call the note endpoint to get a JWT",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-01-07T20:43:48.123Z",
+	"_postman_exported_using": "Postman/10.21.11"
+}
