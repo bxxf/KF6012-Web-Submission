@@ -151,7 +151,7 @@ Returns list of content within the database
 
 Returns list of authors and their affiliations
 
-[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/author-and-affiliation?country=czech republic]
+https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/author-and-affiliation?country=czech+republic
 
 **Output:**
 
@@ -190,7 +190,7 @@ Returns list of authors and their affiliations
 
 Returns list of content types
 
-[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content-types]
+https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content-types
 
 **Output:**
 
@@ -210,7 +210,7 @@ Returns list of content types
 
 Returns list of content and author affiliations and other information based on input from frontend
 
-[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/directory?search=explain&type=paper]
+https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/directory?search=explain&type=paper
 
 **Parameters:**
 
