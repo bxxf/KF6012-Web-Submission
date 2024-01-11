@@ -11,7 +11,6 @@
  */
 
 import { useLogin } from "@hooks/useLogin";
-import { useNavigate } from "@tanstack/react-router";
 
 export default function SignInDialogBody({
   setLoading,
@@ -41,8 +40,6 @@ export default function SignInDialogBody({
         setError("Invalid credentials");
       });
   };
-
-  const navigate = useNavigate();
 
   return (
     <>
