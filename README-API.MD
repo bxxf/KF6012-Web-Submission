@@ -58,6 +58,7 @@ The prefix for all routes is specified in `config/config.php`. By default, route
 ### **GET /developer**
 
 Returns Student ID and Name of the developer (me)
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer)
 
 **Response:**
 
@@ -71,6 +72,7 @@ Returns Student ID and Name of the developer (me)
 ### **GET /country**
 
 Returns a list of countries represented in the content table
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/country](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/country)
 
 ```json
 {
@@ -85,6 +87,7 @@ Returns a list of countries represented in the content table
 ### **GET /preview**
 
 Returns list of videos and their preview videos
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/preview?limit=5](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/preview?limit=5)
 
 **Output:**
 
@@ -110,6 +113,7 @@ Returns list of videos and their preview videos
 ### **GET /content**
 
 Returns list of content within the database
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content?limit=5&type=paper](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content?limit=5&type=paper)
 
 **Output:**
 
@@ -140,6 +144,7 @@ Returns list of content within the database
 ### **GET /author-and-affiliation**
 
 Returns list of authors and their affiliations
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/author-and-affiliation?country=czech republic](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/author-and-affiliation?country=czech republic)
 
 **Output:**
 
@@ -177,6 +182,8 @@ Returns list of authors and their affiliations
 ### **GET /content-types**
 
 Returns list of content types
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content-types]
+(https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/content-types)
 
 **Output:**
 
@@ -195,6 +202,8 @@ Returns list of content types
 ### **GET /directory**
 
 Returns list of content and author affiliations and other information based on input from frontend
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/directory?search=explain&type=paper]
+(https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/directory?search=explain&type=paper)
 
 **Parameters:**
 
@@ -228,6 +237,7 @@ Returns list of content and author affiliations and other information based on i
 ### **POST /token**
 
 Returns a JWT token for authentication
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/token](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/token)
 
 **Input Headers:**
 
@@ -252,6 +262,7 @@ Set-Cookie: logintoken=TOKEN SameSite=Strict; Path=/; Max-Age=1800"
 ### **GET /user**
 
 Returns information about the user
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/user](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/user)
 
 **Input Headers:**
 
@@ -276,6 +287,7 @@ Authorization: Bearer TOKEN
 ### **GET /note**
 
 Returns list of notes for the user
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note)
 
 **Input Headers:**
 
@@ -302,6 +314,7 @@ Authorization: Bearer TOKEN
 ### **POST /note**
 
 Creates a new note for the user
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note)
 
 **Input Headers:**
 
@@ -333,6 +346,7 @@ Authorization: Bearer TOKEN
 ### **PUT /note**
 
 Updates a note for the user
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note)
 
 **Input Headers:**
 
@@ -363,6 +377,7 @@ Authorization: Bearer TOKEN
 ### **DELETE /note**
 
 Deletes a note for the user
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/note)
 
 **Input Headers:**
 
