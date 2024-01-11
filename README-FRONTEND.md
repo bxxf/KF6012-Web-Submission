@@ -51,7 +51,7 @@ The app is configured using the config file in the src/config folder. This file 
 
 ## Potential Issues
 
-Slow internet connection might cause issues with slower routing as the data are preloaded before the rendering. To mitigate these issues use local development server.
+Slow internet connection might cause issues with slower routing as the data are preloaded before the rendering. To mitigate these issues with slower internet connection, use local development server.
 
 ## Installation
 
