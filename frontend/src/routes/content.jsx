@@ -54,6 +54,7 @@ export default function Content() {
     data,
     previousPage,
     setPageSize,
+    setPageCount,
     pageIndex,
     pageSize,
     loading,
@@ -88,6 +89,7 @@ export default function Content() {
         contentType={contentType}
         setContentTypeFilter={setContentTypeFilter}
         setPage={setPage}
+        setPageCount={setPageCount}
         types={cTypes}
       ></TypeSelector>
 

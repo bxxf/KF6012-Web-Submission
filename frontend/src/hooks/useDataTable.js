@@ -192,5 +192,6 @@ export const useDataTable = ({ columns, dialog = false }) => {
     setSelectedItem,
     searchTerm,
     setSearchTerm,
+    setPageCount,
   };
 };

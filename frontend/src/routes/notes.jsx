@@ -96,7 +96,7 @@ export default function Notes() {
   };
 
   return (
-    <div className="px-[5%] md:px-10 mt-10">
+    <div className="px-[5%] md:px-10 mt-10 min-h-[600px]">
       <h1 className="text-2xl md:text-3xl font-bold">My Notes</h1>
       <p className="text-gray-500 mt-2">
         Here you can find all the notes you have taken.

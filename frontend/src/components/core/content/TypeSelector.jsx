@@ -11,6 +11,7 @@ export default function TypeSelector({
   contentType,
   setContentTypeFilter,
   setPage,
+  setPageCount,
   types,
 }) {
   return (
@@ -21,6 +22,7 @@ export default function TypeSelector({
         // reset page to 0 when changing content type to avoid errors
         setPage(0);
         setContentTypeFilter(e.target.value === "all" ? null : e.target.value);
+        setPageCount(1000);
       }}
     >
       <option value="all">All Content Types</option>

@@ -25,13 +25,13 @@ export default function Note({
 }) {
   return (
     <div
-      className="bg-gray-100 rounded-lg aspect-square max-w-[90vw] p-5 flex flex-col justify-end max-w-full md:max-w-[400px] relative w-full "
-      style={{
-        minWidth: notesLength < 4 ? "400px" : "auto",
-        minHeight: notesLength < 4 ? "400px" : "auto",
-      }}
+      className={`bg-gray-100 rounded-lg aspect-square max-w-[90vw] p-5 flex flex-col justify-end max-w-full md:max-w-[400px] relative w-full ${
+        notesLength < 4 && "md:min-w-[400px] md:min-h-[400px]"
+      }`}
       key={note.id}
     >
+      {/* Hidden span to prevent purging of the classes by tailwind compiler */}
+      <span className="md:min-w-[400px] md:min-h-[400px] hidden"></span>
       <div className="absolute right-0 top-0 p-4 text-xs flex gap-x-3 text-gray-800">
         <button onClick={() => removeNote(note)} className="cursor-pointer">
           <TrashIcon></TrashIcon>
