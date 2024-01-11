@@ -142,4 +142,12 @@ class DatabaseManager
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * This function is used for preparing custom queries.
+     */
+    public function prepare($query)
+    {
+        return $this->pdo->prepare($query);
+    }
 }

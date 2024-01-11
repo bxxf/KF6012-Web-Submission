@@ -45,59 +45,51 @@ class AffiliationRepository
      */
     public function getAuthorsWithAffiliations(string|null $country = null, int|null $contentId = null)
     {
-        // Define the condition for the query based on the parameters
+        $condition = "1";
+
         if ($country) {
-            $country = strtolower($country);
-            $condition = "LOWER(aff.country) = '$country'";
+            $condition = "LOWER(aff.country) = ?";
+            $params[] = strtolower($country);
         } elseif ($contentId) {
-            $contentId = strtolower($contentId);
-            $condition = "LOWER(c.id) = '$contentId'";
-        } else {
-            $condition = "1";
+            $condition = "c.id = ?";
+            $params[] = $contentId;
         }
 
-
-
-        // MULTILINE STRING - QUERY DEFINITION
-
-        /**
-         * This query returns all authors with their affiliations and the content they have authored.
-         * @generated - Generated SQL query with GPT-3.5
-         **/
-
         $query = <<<SQL
-         SELECT 
-             a.id AS author_id, 
-             a.name AS author_name, 
-             aff.country, 
-             aff.city, 
-             aff.institution, 
-             c.id AS content_id, 
-             c.title AS content_title,
-             c.type AS content_type
-         FROM 
-             author a
-         JOIN 
-             content_has_author cha ON a.id = cha.author
-         JOIN 
-             content c ON cha.content = c.id
-         JOIN 
-             affiliation aff ON a.id = aff.author AND c.id = aff.content
-         WHERE 
-             $condition
-         GROUP BY
-             c.id
-     SQL;
+        SELECT 
+            a.id AS author_id, 
+            a.name AS author_name, 
+            aff.country, 
+            aff.city, 
+            aff.institution, 
+            c.id AS content_id, 
+            c.title AS content_title,
+            c.type AS content_type
+        FROM 
+            author a
+        JOIN 
+            content_has_author cha ON a.id = cha.author
+        JOIN 
+            content c ON cha.content = c.id
+        JOIN 
+            affiliation aff ON a.id = aff.author AND c.id = aff.content
+        WHERE 
+            $condition
+        GROUP BY
+            c.id
+    SQL;
 
+        $stmt = $this->chiDatabase->prepare($query);
 
-        $authorsWithAffiliations = $this->chiDatabase->query(
-            $query
-        );
-
-
-        return $authorsWithAffiliations;
+        if (isset($country)) {
+            $stmt->bindParam(1, $country);
+        } elseif (isset($contentId)) {
+            $stmt->bindParam(1, $contentId, \PDO::PARAM_INT);
+        }
+        // B
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
 
     /**
      * This function returns the content with author affiliations and parameters for frontend.
@@ -111,65 +103,68 @@ class AffiliationRepository
      */
     public function getContentWithAffiliations(int|null $limit = null, string|null $typeId = null, int|null $page = null, string|null $search = null)
     {
-        $limitStr = "";
+        $params = [];
         $condition = "1";
 
         if (isset($typeId)) {
-            $condition = "LOWER(c.type) = '$typeId'";
+            $condition = "LOWER(c.type) = ?";
+            $params[] = $typeId;
         }
         if (isset($search)) {
-            $condition = "LOWER(c.title) LIKE '%$search%'";
+            $condition = "LOWER(c.title) LIKE ?";
+            $params[] = "%$search%";
         }
 
-        if (isset($limit)) {
-            // we need to add new variable that keeps the string as we are working with the int late in offset
-            $limitStr = " LIMIT $limit";
-        }
-
-        if (isset($page) && isset($limit)) {
-            $page = " OFFSET " . (($page - 1) * $limit);
-        }
-
-        // MULTILINE STRING - QUERY DEFINITION
-
-        /**
-         * This query returns all authors with their affiliations and the content they have authored.
-         * @generated - Generated SQL query with GPT-3.5
-         **/
+        $limitStr = isset($limit) ? " LIMIT :limit" : "";
+        $offsetStr = isset($page) && isset($limit) ? " OFFSET :offset" : "";
 
         $query = <<<SQL
-         SELECT 
-             a.id AS author_id, 
-             a.name AS author_name, 
-             aff.country, 
-             aff.city, 
-             aff.institution, 
-             c.id AS content_id, 
-             c.title AS content_title,
-             c.type AS content_type,
-             c.abstract AS content_abstract
-         FROM 
-             author a
-         JOIN 
-             content_has_author cha ON a.id = cha.author
-         JOIN 
-             content c ON cha.content = c.id
-         JOIN 
-             affiliation aff ON a.id = aff.author AND c.id = aff.content
-         WHERE 
-             $condition
-         GROUP BY
-             c.id
-         ORDER BY
-            c.title
+        SELECT 
+            a.id AS author_id, 
+            a.name AS author_name, 
+            aff.country, 
+            aff.city, 
+            aff.institution, 
+            c.id AS content_id, 
+            c.title AS content_title,
+            c.type AS content_type,
+            c.abstract AS content_abstract
+        FROM 
+            author a
+        JOIN 
+            content_has_author cha ON a.id = cha.author
+        JOIN 
+            content c ON cha.content = c.id
+        JOIN 
+            affiliation aff ON a.id = aff.author AND c.id = aff.content
+        WHERE 
+            $condition
+        GROUP BY
+            c.id
+        ORDER BY
+           c.title
         $limitStr
-        $page;
-     SQL;
+        $offsetStr;
+    SQL;
 
+        $stmt = $this->chiDatabase->prepare($query);
 
-        $authorsWithAffiliations = $this->chiDatabase->query(
-            $query
-        );
+        // Binding parameters
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+        if (isset($limit)) {
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+        }
+        if (isset($page) && isset($limit)) {
+            $offset = ($page - 1) * $limit;
+            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+
+        $authorsWithAffiliations = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
 
         // Query for all awards
         $awardsQuery = "SELECT content, GROUP_CONCAT(award.name) AS awards FROM content_has_award JOIN award ON content_has_award.award = award.id GROUP BY content_has_award.content";

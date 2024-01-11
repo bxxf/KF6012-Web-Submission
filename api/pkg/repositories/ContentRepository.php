@@ -29,14 +29,21 @@ class ContentRepository
      */
     public function getPreviews(int $limit = null)
     {
-        if ($limit) {
-            $previews = $this->chiDatabase->query("SELECT title, preview_video FROM content WHERE preview_video IS NOT NULL LIMIT $limit");
-            return $previews;
+        if (isset($limit)) {
+            // Use a prepared statement with a placeholder for the limit
+            $stmt = $this->chiDatabase->prepare("SELECT title, preview_video FROM content WHERE preview_video IS NOT NULL LIMIT :limit");
+            // Bind the $limit parameter as an integer
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            $stmt->execute();
+            // Fetch and return the results
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
         }
 
+        // If no limit is provided, execute a simple query
         $previews = $this->chiDatabase->query("SELECT title, preview_video FROM content WHERE preview_video IS NOT NULL");
         return $previews;
     }
+
 
     /**
      * Returns if the content exists
@@ -58,33 +65,45 @@ class ContentRepository
      */
     public function getContent(int $page = null, int $limit = null, string $type = null)
     {
-        // Define the condition for the query based on the parameters
+        $params = [];
+        // Fallback condition if no type is provided
+        $condition = "1";
+
         if (isset($type)) {
-            $type = strtolower($type);
-            $condition = "LOWER(type.name) = '$type'";
-        } else {
-            $condition = "1";
+            $condition = "LOWER(type.name) = ?";
+            $params[] = strtolower($type);
         }
 
-        // If page parameter is set then use offsetting and limit, otherwise return all content
         if (isset($page)) {
             if (!isset($limit)) {
                 $limit = 20;
             }
-            // If page is 1 then don't use offsetting
-            if ($page == 1) {
-                $query = "SELECT content.id, title, abstract, type.name AS type FROM content JOIN type ON content.type = type.id WHERE $condition LIMIT $limit";
-            } else {
-                $offset = $limit * ($page - 1);
 
-                $query = "SELECT content.id, title, abstract, type.name AS type FROM content JOIN type ON content.type = type.id WHERE $condition LIMIT $limit OFFSET $offset";
-            }
+            // Calculate the offset based on the page number
+            $offset = $limit * ($page - 1);
+
+            // Create the query using placeholders for limit and offset
+            $query = "SELECT content.id, title, abstract, type.name AS type FROM content JOIN type ON content.type = type.id WHERE $condition LIMIT :limit OFFSET :offset";
+            $stmt = $this->chiDatabase->prepare($query);
+
+            // Bind the parameters for limit and offset
+            $stmt->bindParam(':limit', $limit, \PDO::PARAM_INT);
+            $stmt->bindParam(':offset', $offset, \PDO::PARAM_INT);
         } else {
+            // Prepare the query without limit and offset
             $query = "SELECT content.id, title, abstract, type.name AS type FROM content JOIN type ON content.type = type.id WHERE $condition";
+            $stmt = $this->chiDatabase->prepare($query);
         }
-        $content = $this->chiDatabase->query($query);
-        return $content;
+
+        // Bind the type parameter if set
+        foreach ($params as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
 
     public function getContentTypes()
     {
