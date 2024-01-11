@@ -123,6 +123,7 @@ export const useApi = () => {
     const response = await fetch(API_URL + ENDPOINTS.USER, {
       method: "GET",
       headers: {
+        // here we need to get token directly from cookies as it is not in state yet
         Authorization: "Bearer " + Cookies.get("logintoken"),
       },
     });
