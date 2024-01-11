@@ -70,3 +70,5 @@ bun dev
 ```
 
 You can use other package managers such as npm or yarn, however, I recommend using bun as it is faster and more reliable.
+
+** If you want to run frontend locally, you need to run backend locally as well or change origin in API's config due to the CORS settings!**
