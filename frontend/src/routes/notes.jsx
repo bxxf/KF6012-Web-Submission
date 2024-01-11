@@ -9,6 +9,8 @@ import { rootRoute } from "./__root";
 import { Route, redirect } from "@tanstack/react-router";
 import { fetchNotes } from "@utils/fetchNotes";
 
+import { toast } from "sonner";
+
 import {
   getFullDirectory,
   getNotes,
@@ -24,7 +26,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Note from "@components/core/notes/Note";
 import CreateNoteDialog from "@components/core/notes/CreateNoteDialog";
 import UpdateNoteDialog from "@components/core/notes/UpdateNoteDialog";
-import { toast } from "sonner";
 
 export const notesRoute = new Route({
   getParentRoute: () => rootRoute,
