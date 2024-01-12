@@ -21,6 +21,8 @@ export default function CreateNoteBody({
   closeModal,
   removeSelected,
   note = undefined,
+  setHidden,
+  hidden,
 }) {
   const maxLength = 250;
 
@@ -57,6 +59,10 @@ export default function CreateNoteBody({
           setNotes([...getNotes(), { ...data, ...selectedItem }]);
           closeModal();
           removeSelected();
+          setHidden({
+            ...hidden,
+            [initialNoteId]: false,
+          });
           toast.success("Note created successfully");
         }
       })
