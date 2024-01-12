@@ -74,7 +74,7 @@ class ContentRepository
             $params[] = strtolower($type);
         }
 
-        if (isset($page)) {
+        if (isset($page) || isset($limit)) {
             if (!isset($limit)) {
                 $limit = 20;
             }

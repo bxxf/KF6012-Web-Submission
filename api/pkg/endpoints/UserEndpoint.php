@@ -28,10 +28,9 @@ class UserEndpoint implements GetEndpointInterface
         $token = RequestUtils::bearerAuthorizationGuard();
         $verify = $this->jwtManager->verifyToken($token);
         $user = $this->userRepository->getUserById($verify["id"]);
-        $email = $user["email"];
 
         ResponseUtils::returnJson([
-            "user" => array_merge($verify, ["email" => $email])
+            "user" => array_merge($verify, $user)
         ]);
     }
 }
