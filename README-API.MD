@@ -12,7 +12,7 @@ Postman collection and environment for testing are included in the `postman` dir
 
 The API is hosted on the NUWebspace server at the following URL: 
 
-[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/developer)
+[https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/](https://w21020340.nuwebspace.co.uk/kf6012/coursework/api/)
 
 ## File Structure Overview
 
