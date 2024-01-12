@@ -28,7 +28,7 @@ export default function Note({
       className={`bg-gray-100 rounded-lg aspect-square max-w-[90vw] p-5 flex flex-col justify-end max-w-full md:max-w-[400px] relative w-full ${
         notesLength < 4 && "md:min-w-[400px] md:min-h-[400px]"
       }`}
-      key={note.id}
+      key={note?.id}
     >
       {/* Hidden span to prevent purging of the classes by tailwind compiler */}
       <span className="md:min-w-[400px] md:min-h-[400px] hidden"></span>
@@ -47,12 +47,12 @@ export default function Note({
       </div>
 
       <span className="block text-lg mb-4 text-gray-600">
-        {getFullDirectory().find((c) => c.content_id === note.content_id)
+        {getFullDirectory().find((c) => c?.content_id === note?.content_id)
           ?.content_title ?? <LoaderShimmer></LoaderShimmer>}
       </span>
       <hr className="mb-4" />
       <span className="block text-sm font-medium text-gray-500">My Note: </span>
-      <span className="block">{note.text}</span>
+      <span className="block">{note?.text}</span>
     </div>
   );
 }

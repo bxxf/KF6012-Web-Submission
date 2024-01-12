@@ -22,7 +22,6 @@ export default function CreateNoteBody({
   removeSelected,
   note = undefined,
   setHidden,
-  hidden,
 }) {
   const maxLength = 250;
 
@@ -55,14 +54,15 @@ export default function CreateNoteBody({
       .then(async (res) => {
         if (res.status === 200) {
           const data = (await res.json()).note;
-          // add note to the current state so it is visible immediately
-          setNotes([...getNotes(), { ...data, ...selectedItem }]);
           closeModal();
           removeSelected();
-          setHidden({
-            ...hidden,
-            [initialNoteId]: false,
-          });
+          // we can reset hidden as anyways note got refetched
+          setHidden({});
+
+          // add note to the current state so it is visible immediately
+          setNotes([...getNotes(), data]);
+
+          // add note to the current sta
           toast.success("Note created successfully");
         }
       })

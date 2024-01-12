@@ -21,7 +21,7 @@ import CreateNoteTable from "./CreateNoteTable";
 import CreateNoteBody from "./CreateNoteBody";
 import CreateNoteSearch from "./CreateNoteSearch";
 
-export default function CreateNoteDialog({ isOpen, setIsOpen }) {
+export default function CreateNoteDialog({ isOpen, setIsOpen, setHidden }) {
   const {
     table,
     headerGroups,
@@ -30,8 +30,6 @@ export default function CreateNoteDialog({ isOpen, setIsOpen }) {
     selectedItem,
     setSearchTerm,
     setSelectedItem,
-    setHidden,
-    hidden,
   } = useDataTable({
     columns,
     dialog: true,
@@ -156,7 +154,6 @@ export default function CreateNoteDialog({ isOpen, setIsOpen }) {
                       closeModal={() => setIsOpen(false)}
                       selectedItem={selectedItem}
                       setHidden={setHidden}
-                      hidden={hidden}
                       removeSelected={() => {
                         setSelectedItem(undefined);
                         setRowSelection({});

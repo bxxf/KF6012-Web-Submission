@@ -118,13 +118,13 @@ export default function Notes() {
               initial="hidden"
               animate="visible"
               style={{
-                display: hidden[note.id] ? "none" : "block",
+                display: hidden[note?.id] ? "none" : "block",
               }}
               exit="hidden"
               variants={variants}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {!hidden[note.id] && (
+              {!hidden[note?.id] && (
                 <Note
                   note={note}
                   removeNote={removeNote}
@@ -149,7 +149,6 @@ export default function Notes() {
             isOpen={addNoteDialogOpen}
             setIsOpen={setAddNoteDialogOpen}
             setHidden={setHidden}
-            hidden={hidden}
           />
           <UpdateNoteDialog
             note={noteToEdit}
@@ -158,7 +157,7 @@ export default function Notes() {
             selectedItem={
               noteToEdit
                 ? getFullDirectory()?.find(
-                    (c) => c.content_id === noteToEdit?.content_id
+                    (c) => c?.content_id === noteToEdit?.content_id
                   )
                 : null
             }
