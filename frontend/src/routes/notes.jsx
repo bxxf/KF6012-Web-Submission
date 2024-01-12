@@ -47,26 +47,6 @@ const variants = {
 
 export default function Notes() {
   const [rerender, setRerender] = useState();
-  useEffect(() => {
-    if (getNotes().length < 1)
-      useApi()
-        .fetchNotes()
-        .then((res) => {
-          setNotes(res);
-          // I hate react, why do i need to do this to trigger rerender manually
-          setRerender(true);
-        });
-    if (getFullDirectory().length < 1)
-      useApi()
-        .fetchContent()
-        .then((res) => {
-          setFullDirectory(res);
-          setRerender(false);
-        });
-
-    // trigger rerender
-  }, []);
-
   const [addNoteDialogOpen, setAddNoteDialogOpen] = useState(false);
   const [updateNoteDialogOpen, setUpdateNoteDialogOpen] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState(null);
@@ -94,6 +74,26 @@ export default function Notes() {
         });
       });
   };
+
+  useEffect(() => {
+    if (getNotes().length < 1)
+      useApi()
+        .fetchNotes()
+        .then((res) => {
+          setNotes(res);
+          // I hate react, why do i need to do this to trigger rerender manually
+          setRerender(true);
+        });
+    if (getFullDirectory().length < 1)
+      useApi()
+        .fetchContent()
+        .then((res) => {
+          setFullDirectory(res);
+          setRerender(false);
+        });
+
+    // trigger rerender
+  }, []);
 
   return (
     <div className="px-[5%] md:px-10 mt-10 min-h-[600px]">
@@ -148,6 +148,8 @@ export default function Notes() {
           <CreateNoteDialog
             isOpen={addNoteDialogOpen}
             setIsOpen={setAddNoteDialogOpen}
+            setHidden={setHidden}
+            hidden={hidden}
           />
           <UpdateNoteDialog
             note={noteToEdit}

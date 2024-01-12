@@ -30,6 +30,8 @@ export default function CreateNoteDialog({ isOpen, setIsOpen }) {
     selectedItem,
     setSearchTerm,
     setSelectedItem,
+    setHidden,
+    hidden,
   } = useDataTable({
     columns,
     dialog: true,
@@ -153,6 +155,8 @@ export default function CreateNoteDialog({ isOpen, setIsOpen }) {
                     <CreateNoteBody
                       closeModal={() => setIsOpen(false)}
                       selectedItem={selectedItem}
+                      setHidden={setHidden}
+                      hidden={hidden}
                       removeSelected={() => {
                         setSelectedItem(undefined);
                         setRowSelection({});
