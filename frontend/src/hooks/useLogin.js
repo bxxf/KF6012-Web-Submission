@@ -5,6 +5,7 @@ import { setLoggedIn, setToken, setUser } from "@stores/auth";
 import { useApi } from "@hooks/useApi";
 
 import { toast } from "sonner";
+import { setNotes } from "@/stores/data";
 /**
  * This hook is used to login and logout the user. It contains all the endpoints and methods for fetching data.
  * @author Filip brebera
@@ -34,7 +35,8 @@ export const useLogin = () => {
           });
 
           setLoggedIn(true);
-          setUser({ email: email });
+          // we need to show email as we would need to do another fetch to get user info
+          setUser({ email: email, name: email });
           toast.success("Logged in successfully", {
             description:
               "You have been logged in. Now you can use note-taking features.",
@@ -63,6 +65,8 @@ export const useLogin = () => {
         to: "/kf6012/coursework/frontend/login",
       });
     }
+    // reset notes
+    setNotes([]);
     toast.success("Logged out successfully", {
       description: "You have been logged out.",
       descriptionClassName: "!text-sm !text-red-500",

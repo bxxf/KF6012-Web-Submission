@@ -96,7 +96,7 @@ export default function Navbar() {
               >
                 Notes
               </Link>
-              <span className="text-sm hidden lg:inline">{user?.email}</span>
+              <span className="text-sm hidden lg:inline">{user?.name}</span>
               <button
                 className="text-sm"
                 onClick={() => {

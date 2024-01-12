@@ -70,7 +70,7 @@ export default function NavbarDrawer({ isOpen, setIsOpen }) {
                 ) : (
                   <div className="w-full">
                     <div className="text-white text-xl mb-6">
-                      {getUser().email}
+                      {getUser().name}
                     </div>
                     <button
                       className="bg-white text-black py-3 px-4 rounded-lg text-center font-bold w-full"
