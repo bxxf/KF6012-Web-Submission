@@ -33,10 +33,15 @@ export default function Note({
       {/* Hidden span to prevent purging of the classes by tailwind compiler */}
       <span className="md:min-w-[400px] md:min-h-[400px] hidden"></span>
       <div className="absolute right-0 top-0 p-4 text-xs flex gap-x-3 text-gray-800">
-        <button onClick={() => removeNote(note)} className="cursor-pointer">
+        <button
+          onClick={() => removeNote(note)}
+          className="cursor-pointer"
+          disabled={getFullDirectory().length < 1}
+        >
           <TrashIcon></TrashIcon>
         </button>
         <button
+          disabled={getFullDirectory().length < 1}
           onClick={() => {
             setNoteToEdit(note);
             setUpdateNoteDialogOpen(true);
