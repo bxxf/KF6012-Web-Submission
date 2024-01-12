@@ -62,7 +62,6 @@ export default function CreateNoteBody({
           // add note to the current state so it is visible immediately
           setNotes([...getNotes(), data]);
 
-          // add note to the current sta
           toast.success("Note created successfully");
         }
       })
