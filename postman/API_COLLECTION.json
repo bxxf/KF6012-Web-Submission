@@ -30,13 +30,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"raw": "{{APIURL}}/{{PREFIX}}/country",
 					"host": [
 						"{{APIURL}}"
 					],
 					"path": [
 						"{{PREFIX}}",
-						"developer"
+						"country"
 					]
 				}
 			},
@@ -48,13 +48,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"raw": "{{APIURL}}/{{PREFIX}}/preview",
 					"host": [
 						"{{APIURL}}"
 					],
 					"path": [
 						"{{PREFIX}}",
-						"developer"
+						"preview"
 					]
 				}
 			},
@@ -66,13 +66,19 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"raw": "{{APIURL}}/{{PREFIX}}/preview?limit=1",
 					"host": [
 						"{{APIURL}}"
 					],
 					"path": [
 						"{{PREFIX}}",
-						"developer"
+						"preview"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1"
+						}
 					]
 				}
 			},
@@ -84,13 +90,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"raw": "{{APIURL}}/{{PREFIX}}/content",
 					"host": [
 						"{{APIURL}}"
 					],
 					"path": [
 						"{{PREFIX}}",
-						"developer"
+						"content"
 					]
 				}
 			},
@@ -102,13 +108,23 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{APIURL}}/{{PREFIX}}/developer",
+					"raw": "{{APIURL}}/{{PREFIX}}/content?page=2&type=case study",
 					"host": [
 						"{{APIURL}}"
 					],
 					"path": [
 						"{{PREFIX}}",
-						"developer"
+						"content"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "type",
+							"value": "case study"
+						}
 					]
 				}
 			},
@@ -192,12 +208,12 @@
 					"basic": [
 						{
 							"key": "password",
-							"value": "examplePassword1234",
+							"value": "CHI2023",
 							"type": "string"
 						},
 						{
 							"key": "username",
-							"value": "john@example.com",
+							"value": "admin@example.com",
 							"type": "string"
 						}
 					]
@@ -225,7 +241,7 @@
 			"response": []
 		},
 		{
-			"name": "Get User",
+			"name": "Get User (JWT Bearer)",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -434,7 +450,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"note_id\": 2,\n    \"text\": \"ahojkos\"\n}",
+					"raw": "{\n    \"note_id\": 1,\n    \"text\": \"something\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -496,7 +512,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"note_id\": 2\n}",
+					"raw": "{\n    \"note_id\": 1\n}",
 					"options": {
 						"raw": {
 							"language": "json"
